@@ -60,6 +60,17 @@
     <url>https://github.com/tony-bringardner/${project.artifactId}/issues</url>
   </issueManagement>
 
+  <!-- GitHub Packages, used by release.sh. ${project.artifactId} resolves in each child, so every
+       module (and this parent, and the BOM) publishes to its own repo. Maven Central releases use
+       the release profile below: mvn -Prelease clean deploy -->
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>tony-bringardner</name>
+      <url>https://maven.pkg.github.com/tony-bringardner/${project.artifactId}</url>
+    </repository>
+  </distributionManagement>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
