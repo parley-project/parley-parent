@@ -5,7 +5,8 @@ protocols. Every Parley module inherits from it, so the common settings live in 
 
 - Coordinates under `us.bringardner.parley`, and the metadata Maven Central requires: name, URL,
   Apache 2.0 license, developer and SCM (each module's URL and SCM point at its own GitHub repo).
-- Java 11 (`maven.compiler.release`), UTF-8, and plugin versions.
+- Java 11 (`maven.compiler.release`), UTF-8, and the versions of the build plugins every module uses
+  (compiler, surefire, failsafe, jacoco, jar, source, javadoc, deploy, enforcer, gpg).
 - Checks on every build: Maven 3.6.3+, Java 11+, and that each jar module sets `parley.moduleName`
   (written to the jar as `Automatic-Module-Name`).
 - A `release` profile with everything a Maven Central release needs: sources and Javadoc jars, GPG
@@ -26,18 +27,33 @@ protocols. Every Parley module inherits from it, so the common settings live in 
 </properties>
 ```
 
-## Releasing a module to Maven Central
+## Releasing
 
-```
-mvn -Prelease clean deploy
-```
+A release is two separate steps, and a module can do either or both:
 
-This needs a GPG key (passphrase in `MAVEN_GPG_PASSPHRASE`) and a Central Portal user token in
-`~/.m2/settings.xml` under the server id `central`. Uploads wait for you to press Publish on
-central.sonatype.com. Release this parent before any module that uses it.
+| Where | How | What you get |
+|---|---|---|
+| GitHub Packages | `./release.sh` in the module (plain `mvn clean deploy`, then tags `v<version>` and pushes) | The jar and sources jar |
+| Maven Central | `mvn -Prelease clean deploy` | Sources and Javadoc jars, GPG signatures, uploaded to the Central Portal |
+
+The Central step needs a GPG key (passphrase in `MAVEN_GPG_PASSPHRASE`) and a Central Portal user
+token in `~/.m2/settings.xml` under the server id `central`. The upload waits for you to press Publish
+on central.sonatype.com, and the group id's namespace (`us.bringardner`) must be verified there.
+
+### Order
+
+Released versions can't have a SNAPSHOT parent or SNAPSHOT dependencies, so release in this order:
+
+1. **parley-parent** 1.0.0.
+2. Every module, starting with parley-core and following the dependencies (`mvn -f parley-build/pom.xml verify`
+   builds them in that order). In each, point the parent at the released version first:
+   `mvn versions:update-parent -DparentVersion=1.0.0`, and set the version of the other Parley modules it
+   uses in the same way.
+3. **parley-bom** last, with each module's released version in its properties.
 
 ## Modules
 
-parley-core, parley-io, parley-net, parley-files (with parley-files-ftp, -sftp and -jdbc),
-parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap and parley-pop3.
+parley-core, parley-io, parley-net, parley-files (with parley-files-ftp, -sftp, -jdbc, -swing, -fx and
+-viewer), parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap and parley-pop3.
 Their versions are listed together in [parley-bom](https://github.com/tony-bringardner/parley-bom).
+`parley-build` is an aggregator for building them all with one command; it is never released.
