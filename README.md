@@ -18,7 +18,7 @@ protocols. Every Parley module inherits from it, so the common settings live in 
 <parent>
     <groupId>us.bringardner.parley</groupId>
     <artifactId>parley-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </parent>
 
 <artifactId>parley-example</artifactId>
