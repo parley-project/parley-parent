@@ -33,10 +33,10 @@ A release is two separate steps, and a module can do either or both:
 
 | Where | How | What you get |
 |---|---|---|
-| GitHub Packages | `./release.sh` in the module (plain `mvn clean deploy`, then tags `v<version>` and pushes) | The jar and sources jar |
+| GitHub Packages | `mvn clean deploy` in the module (a `github` server in `~/.m2/settings.xml`) | The jar and sources jar |
 | Maven Central | `mvn -Prelease clean deploy` | Sources and Javadoc jars, GPG signatures, uploaded to the Central Portal |
 
-The Central step needs a GPG key (passphrase in `MAVEN_GPG_PASSPHRASE`) and a Central Portal user
+Tag each release `v<version>` and push the tag. The Central step needs a GPG key (passphrase in `MAVEN_GPG_PASSPHRASE`) and a Central Portal user
 token in `~/.m2/settings.xml` under the server id `central`. The upload waits for you to press Publish
 on central.sonatype.com, and the group id's namespace (`us.bringardner`) must be verified there.
 
