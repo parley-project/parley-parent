@@ -51,7 +51,7 @@
        child.scm.url.inherit.append.path="false">
     <connection>scm:git:https://github.com/tony-bringardner/${project.artifactId}.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/tony-bringardner/${project.artifactId}.git</developerConnection>
-    <url>https://github.com/tony-bringardner/${project.artifactId}/tree/main</url>
+    <url>https://github.com/tony-bringardner/${project.artifactId}/tree/master</url>
     <tag>HEAD</tag>
   </scm>
 
