@@ -53,7 +53,18 @@ Released versions can't have a SNAPSHOT parent or SNAPSHOT dependencies, so rele
 
 ## Modules
 
-parley-core, parley-io, parley-net, parley-files (with parley-files-ftp, -sftp, -jdbc, -swing, -fx and
--viewer), parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap and parley-pop3.
-Their versions are listed together in [parley-bom](https://github.com/tony-bringardner/parley-bom).
+parley-core, parley-io, parley-net, parley-files (with parley-files-ftp, -sftp, -jdbc, -swing and
+-fx), parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap, parley-pop3 and
+parley-brand (the logo, icons and mascot). Their versions are listed together in
+[parley-bom](https://github.com/tony-bringardner/parley-bom).
 `parley-build` is an aggregator for building them all with one command; it is never released.
+
+## What Parley can help you build
+
+These applications are built on Parley. They are not part of the library and not in the BOM; they
+use it the same way your own application would:
+
+- [parley-files-viewer](https://github.com/tony-bringardner/parley-files-viewer) and parley-files-viewer-fx:
+  browse, copy, search and edit files on local, memory, FTP, SFTP and JDBC file systems (Swing and JavaFX).
+- [fsh](https://github.com/tony-bringardner/fsh): a bash-like shell for any parley-files file system.
+- [fsh-ide](https://github.com/tony-bringardner/fsh-ide): an IDE to edit, run and debug fsh scripts.
