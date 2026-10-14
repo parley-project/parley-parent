@@ -54,7 +54,8 @@ Released versions can't have a SNAPSHOT parent or SNAPSHOT dependencies, so rele
 ## Modules
 
 parley-core, parley-io, parley-net, parley-files (with parley-files-ftp, -sftp, -jdbc, -swing and
--fx), parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap, parley-pop3 and
+-fx, and parley-credentials-keychain, its OS keychain credential provider, which needs Java 17),
+parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap, parley-pop3 and
 parley-brand (the logo, icons and mascot). Their versions are listed together in
 [parley-bom](https://github.com/tony-bringardner/parley-bom).
 `parley-build` is an aggregator for building them all with one command; it is never released.
