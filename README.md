@@ -57,7 +57,7 @@ parley-core, parley-io, parley-net, parley-files (with parley-files-ftp, -sftp, 
 -fx, and parley-credentials-keychain, its OS keychain credential provider, which needs Java 17),
 parley-ftp, parley-dns, parley-ssh, parley-mail, parley-smtp, parley-imap, parley-pop3 and
 parley-brand (the logo, icons and mascot). Their versions are listed together in
-[parley-bom](https://github.com/tony-bringardner/parley-bom).
+[parley-bom](https://github.com/parley-project/parley-bom).
 `parley-build` is an aggregator for building them all with one command; it is never released.
 
 ## What Parley can help you build
@@ -65,7 +65,7 @@ parley-brand (the logo, icons and mascot). Their versions are listed together in
 These applications are built on Parley. They are not part of the library and not in the BOM; they
 use it the same way your own application would:
 
-- [parley-files-viewer](https://github.com/tony-bringardner/parley-files-viewer) and parley-files-viewer-fx:
+- [parley-files-viewer](https://github.com/parley-project/parley-files-viewer) and parley-files-viewer-fx:
   browse, copy, search and edit files on local, memory, FTP, SFTP and JDBC file systems (Swing and JavaFX).
-- [fsh](https://github.com/tony-bringardner/fsh): a bash-like shell for any parley-files file system.
-- [fsh-ide](https://github.com/tony-bringardner/fsh-ide): an IDE to edit, run and debug fsh scripts.
+- [fsh](https://github.com/parley-project/parley-fsh): a bash-like shell for any parley-files file system.
+- [fsh-ide](https://github.com/parley-project/parley-fsh-ide): an IDE to edit, run and debug fsh scripts.

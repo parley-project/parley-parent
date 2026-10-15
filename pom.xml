@@ -26,7 +26,7 @@
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Parley: Java libraries for implementing internet protocols. Shared parent POM.</description>
   <!-- ${project.artifactId} resolves in each child, so every module points at its own repo -->
-  <url>https://github.com/tony-bringardner/${project.artifactId}</url>
+  <url>https://github.com/parley-project/${project.artifactId}</url>
   <inceptionYear>2026</inceptionYear>
 
   <licenses>
@@ -49,15 +49,15 @@
   <scm child.scm.connection.inherit.append.path="false"
        child.scm.developerConnection.inherit.append.path="false"
        child.scm.url.inherit.append.path="false">
-    <connection>scm:git:https://github.com/tony-bringardner/${project.artifactId}.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/tony-bringardner/${project.artifactId}.git</developerConnection>
-    <url>https://github.com/tony-bringardner/${project.artifactId}/tree/master</url>
+    <connection>scm:git:https://github.com/parley-project/${project.artifactId}.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/parley-project/${project.artifactId}.git</developerConnection>
+    <url>https://github.com/parley-project/${project.artifactId}/tree/master</url>
     <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/tony-bringardner/${project.artifactId}/issues</url>
+    <url>https://github.com/parley-project/${project.artifactId}/issues</url>
   </issueManagement>
 
   <!-- GitHub Packages: mvn clean deploy. ${project.artifactId} resolves in each child, so every
@@ -66,8 +66,8 @@
   <distributionManagement>
     <repository>
       <id>github</id>
-      <name>tony-bringardner</name>
-      <url>https://maven.pkg.github.com/tony-bringardner/${project.artifactId}</url>
+      <name>parley-project</name>
+      <url>https://maven.pkg.github.com/parley-project/${project.artifactId}</url>
     </repository>
   </distributionManagement>
 
