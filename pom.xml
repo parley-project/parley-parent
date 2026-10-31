@@ -237,6 +237,65 @@
     </profile>
 
     <!--
+      SNAPSHOTs profile: a -SNAPSHOT version to Maven Central's snapshot repository
+      (https://central.sonatype.com/repository/maven-snapshots/), where parley-launcher downloads
+      a SNAPSHOT that isn't installed on the machine.
+        mvn -Psnapshots clean deploy
+      Central doesn't check SNAPSHOTs, so no GPG signature or javadoc: only the jar, its POM and the
+      sources jar. Needs the same Central token as the release profile (the <server> with id
+      central in ~/.m2/settings.xml), and SNAPSHOTs enabled for the namespace in the Central Portal.
+      A plain mvn deploy still goes to GitHub Packages, as before. Central keeps a SNAPSHOT for 90 days.
+    -->
+    <profile>
+      <id>snapshots</id>
+      <!-- (maven-deploy-plugin uploads there; each module's own <repository> stays as it is) -->
+      <distributionManagement>
+        <snapshotRepository>
+          <!-- Matches the <server><id> in ~/.m2/settings.xml, the release profile's token -->
+          <id>central</id>
+          <name>Maven Central snapshots</name>
+          <url>https://central.sonatype.com/repository/maven-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- (a release must not go out this way: it needs the release profile's signatures and javadoc) -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>snapshots-only</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireSnapshotVersion>
+                      <message>-Psnapshots deploys only a -SNAPSHOT version; a release uses -Prelease</message>
+                    </requireSnapshotVersion>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--
       Release profile: everything Maven Central needs.
         mvn -Prelease clean deploy
       Kept out of normal builds so day-to-day work needs no GPG key or Central token.
