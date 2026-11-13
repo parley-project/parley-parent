@@ -68,4 +68,4 @@ use it the same way your own application would:
 - [parley-files-viewer](https://github.com/parley-project/parley-files-viewer) and parley-files-viewer-fx:
   browse, copy, search and edit files on local, memory, FTP, SFTP and JDBC file systems (Swing and JavaFX).
 - [fsh](https://github.com/parley-project/parley-fsh): a bash-like shell for any parley-files file system.
-- [fsh-ide](https://github.com/parley-project/parley-fsh-ide): an IDE to edit, run and debug fsh scripts.
+- [Fsh Studio](https://github.com/parley-project/parley-fsh-studio): an IDE to edit, run and debug fsh scripts.
