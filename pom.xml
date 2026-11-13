@@ -94,6 +94,8 @@
     <version.jar>3.4.2</version.jar>
     <version.javadoc>3.11.2</version.javadoc>
     <version.source>3.3.1</version.source>
+    <!-- 4.9 and later read the class files of JDK 25; 4.8 fails on them -->
+    <version.spotbugs>4.9.8.5</version.spotbugs>
     <version.surefire>3.5.2</version.surefire>
   </properties>
 
@@ -128,6 +130,12 @@
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>${version.jacoco}</version>
+        </plugin>
+        <!-- Static analysis. Modules that use it add the plugin, its configuration and executions. -->
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>${version.spotbugs}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
